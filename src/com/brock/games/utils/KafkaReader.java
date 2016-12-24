@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.UUID;
 
-import org.springframework.stereotype.Service;
+import org.springframework.context.ApplicationContext;
 
 import com.brock.games.crazycricket.constants.Constants;
 import com.brock.games.crazycricket.protobuf.CrazyCricketProtos;
@@ -26,9 +26,12 @@ import kafka.javaapi.consumer.ConsumerConnector;
 
 public class KafkaReader implements Runnable
 {
+	ApplicationContext appCtx = ApplicationContextUtils.getApplicationContext();
+	Redis redis = (Redis) appCtx.getBean("redis");
+
 	private final ConsumerConnector consumerConnector;
 	private final String topic;
-	
+
 	public KafkaReader(String topic)
 	{
 		Properties properties = new Properties();
@@ -38,13 +41,12 @@ public class KafkaReader implements Runnable
 		properties.put("zookeeper.session.timeout.ms", "10000");
 		ConsumerConfig consumerConfig = new ConsumerConfig(properties);
 		this.consumerConnector = Consumer.createJavaConsumerConnector(consumerConfig);
-		this.topic=topic;
+		this.topic = topic;
 	}
 
 	@Override
 	public void run()
 	{
-
 		Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
 		topicCountMap.put(topic, new Integer(1));
 		Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumerConnector
@@ -53,18 +55,24 @@ public class KafkaReader implements Runnable
 		ConsumerIterator<byte[], byte[]> it = stream.iterator();
 		while (it.hasNext())
 		{
-			byte[] message=it.next().message();
+			byte[] message = it.next().message();
 			Game game;
 			try
 			{
 				game = CrazyCricketProtos.Game.parseFrom(message);
-				//System.out.println(game);
+				// System.out.println(game);
+				// SAVE TO REDIS
+				redis.save(game);
 			}
 			catch (InvalidProtocolBufferException e)
 			{
 				e.printStackTrace();
 			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
 		}
-		
+
 	}
 }

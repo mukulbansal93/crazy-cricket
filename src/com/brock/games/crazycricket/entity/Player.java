@@ -1,18 +1,27 @@
-package com.brock.games.crazycricket.datastructures;
+package com.brock.games.crazycricket.entity;
+
+import java.io.Serializable;
 
 /**
  * 
  * @author Mukul Bansal
  */
 
-public class WinLoss
+public class Player implements Serializable
 {
 	private static final long serialVersionUID = -8593244040042347412L;
 
+	private String player;
 	private int win;
 	private int loss;
-	private Long date;
-	
+	public String getPlayer()
+	{
+		return player;
+	}
+	public void setPlayer(String player)
+	{
+		this.player = player;
+	}
 	public int getWin()
 	{
 		return win;
@@ -29,19 +38,11 @@ public class WinLoss
 	{
 		this.loss = loss;
 	}
-	
-	public Long getDate()
-	{
-		return date;
-	}
-	public void setDate(Long date)
-	{
-		this.date = date;
-	}
 	@Override
 	public String toString()
 	{
-		return "WinLoss [win=" + win + ", loss=" + loss + ", date=" + date + "]";
+		return "Player [player=" + player + ", win=" + win + ", loss=" + loss + "]";
 	}
+	
 	
 }

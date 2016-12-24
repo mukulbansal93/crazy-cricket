@@ -52,13 +52,13 @@ public class LeaderboardController
 	public ResponseEntity<String> getDateRangeNationalLeaderboard(
 			@RequestParam(required=false, value ="start") String start, @RequestParam(required=false, value ="end") String end)
 	{
-
+		JSONArray response;
 		try
 		{
 			if (start == null || end == null)
-				;
+				response = leaderboardProcessor.getNationalLeaderboard();
 			else
-				;
+				response = leaderboardProcessor.getDurationalNationalLeaderboard(start,end);
 
 			return null;
 		}

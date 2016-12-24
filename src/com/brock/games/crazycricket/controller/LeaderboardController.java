@@ -32,6 +32,7 @@ public class LeaderboardController
 		try
 		{
 			JSONArray response;
+			
 			if (start == null || end == null)
 				response = leaderboardProcessor.getLeaderboard();
 			else
@@ -60,7 +61,8 @@ public class LeaderboardController
 			else
 				response = leaderboardProcessor.getDurationalNationalLeaderboard(start,end);
 
-			return null;
+			JSONObject result = new JSONObject().put("success", true).put("response", response);
+			return ResponseEntity.status(HttpStatus.OK).body(result.toString());
 		}
 		catch (Exception e)
 		{

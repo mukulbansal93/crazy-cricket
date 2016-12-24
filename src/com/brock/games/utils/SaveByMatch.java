@@ -10,7 +10,7 @@ import com.brock.games.crazycricket.protobuf.CrazyCricketProtos.Game;
  * 
  * @author Mukul Bansal
  */
-public class SaveByMatch implements Runnable
+public class SaveByMatch
 {
 
 	ApplicationContext appCtx = ApplicationContextUtils.getApplicationContext();
@@ -23,8 +23,7 @@ public class SaveByMatch implements Runnable
 		this.game = game;
 	}
 
-	@Override
-	public void run()
+	public void save()
 	{
 		Match match=new Match();
 		match.setLosscountry(game.getLoser().getCountry());

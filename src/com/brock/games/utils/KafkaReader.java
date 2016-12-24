@@ -60,7 +60,7 @@ public class KafkaReader implements Runnable
 			try
 			{
 				game = CrazyCricketProtos.Game.parseFrom(message);
-				// System.out.println(game);
+				System.out.println(game);
 				// SAVE TO REDIS
 				redis.save(game);
 			}

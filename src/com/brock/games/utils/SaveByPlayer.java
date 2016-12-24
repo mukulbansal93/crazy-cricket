@@ -10,7 +10,7 @@ import com.brock.games.crazycricket.protobuf.CrazyCricketProtos.Game;
  * 
  * @author Mukul Bansal
  */
-public class SaveByPlayer implements Runnable
+public class SaveByPlayer
 {
 	ApplicationContext appCtx = ApplicationContextUtils.getApplicationContext();
 	IPlayerDAO playerDAO = (IPlayerDAO) appCtx.getBean("playerDAO");
@@ -22,8 +22,7 @@ public class SaveByPlayer implements Runnable
 		this.game = game;
 	}
 
-	@Override
-	public void run()
+	public void save()
 	{
 		Player winner = playerDAO.find(game.getWinner().getUserId());
 		
@@ -40,7 +39,7 @@ public class SaveByPlayer implements Runnable
 			newPlayer.setLoss(0);
 			playerDAO.save(newPlayer);
 		}
-
+		
 		Player loser = playerDAO.find(game.getLoser().getUserId());
 		if (loser != null)
 		{

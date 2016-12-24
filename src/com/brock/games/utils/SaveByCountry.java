@@ -10,7 +10,7 @@ import com.brock.games.crazycricket.protobuf.CrazyCricketProtos.Game;
  * 
  * @author Mukul Bansal
  */
-public class SaveByCountry implements Runnable
+public class SaveByCountry
 {
 	ApplicationContext appCtx = ApplicationContextUtils.getApplicationContext();
 	ICountryDAO countryDAO = (ICountryDAO) appCtx.getBean("countryDAO");
@@ -21,9 +21,8 @@ public class SaveByCountry implements Runnable
 	{
 		this.game = game;
 	}
-
-	@Override
-	public void run()
+	
+	public void save()
 	{
 		Country winner = countryDAO.find(game.getWinner().getCountry());
 		
@@ -50,7 +49,7 @@ public class SaveByCountry implements Runnable
 		else
 		{
 			Country newCountry = new Country();
-			newCountry.setCountry(game.getWinner().getCountry());
+			newCountry.setCountry(game.getLoser().getCountry());
 			newCountry.setLoss(1);
 			newCountry.setWin(0);
 			countryDAO.save(newCountry);

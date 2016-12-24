@@ -28,7 +28,7 @@
 			</map>
 		</property>
 	</bean>
-
+	
 	<mvc:view-controller path="/" view-name="index" />
 	
 	<mvc:default-servlet-handler />

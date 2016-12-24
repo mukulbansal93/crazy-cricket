@@ -1,5 +1,6 @@
 package com.brock.games.crazycricket.controller;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,12 +31,14 @@ public class LeaderboardController
 
 		try
 		{
+			JSONArray response;
 			if (start == null || end == null)
-				;
+				response = leaderboardProcessor.getLeaderboard();
 			else
-				;
+				response = leaderboardProcessor.getDurationalLeaderboard(start,end);
 			
-			return null;
+			JSONObject result = new JSONObject().put("success", true).put("response", response);
+			return ResponseEntity.status(HttpStatus.OK).body(result.toString());
 		}
 		catch (Exception e)
 		{

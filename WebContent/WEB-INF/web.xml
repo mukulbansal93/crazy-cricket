@@ -10,6 +10,12 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
+	 <listener>
+		<listener-class>
+             com.brock.games.weblistener.CrazyCricketServletContextListener 
+        </listener-class>     
+   	</listener>
 
 	<servlet>
 		<servlet-name>crazy-cricket</servlet-name>

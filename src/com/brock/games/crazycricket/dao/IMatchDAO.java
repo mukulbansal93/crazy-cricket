@@ -11,8 +11,8 @@ import com.brock.games.crazycricket.entity.Match;
 
 public interface IMatchDAO
 {
-	public void save(Match match);
 	public Match find(String id);
 	public Map<Object, Object> findAll();
 	public void delete(String id);
+	public void save(Long key, Match match);
 }

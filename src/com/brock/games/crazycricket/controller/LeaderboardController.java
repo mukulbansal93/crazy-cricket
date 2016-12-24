@@ -25,8 +25,8 @@ public class LeaderboardController
 	LeaderboardProcessor leaderboardProcessor;
 
 	@RequestMapping(value = "/api/leaderboard", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<String> getDateRangeLeaderboard(@RequestParam(required=false, value ="start") String start,
-			@RequestParam(required=false, value ="end") String end)
+	public ResponseEntity<String> getDateRangeLeaderboard(@RequestParam(required=false, value ="start") Long start,
+			@RequestParam(required=false, value ="end") Long end)
 	{
 
 		try
@@ -51,7 +51,7 @@ public class LeaderboardController
 
 	@RequestMapping(value = "/api/national_leaderboard", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<String> getDateRangeNationalLeaderboard(
-			@RequestParam(required=false, value ="start") String start, @RequestParam(required=false, value ="end") String end)
+			@RequestParam(required=false, value ="start") Long start, @RequestParam(required=false, value ="end") Long end)
 	{
 		JSONArray response;
 		try

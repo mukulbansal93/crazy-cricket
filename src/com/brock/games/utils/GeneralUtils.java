@@ -1,19 +1,31 @@
 package com.brock.games.utils;
 
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * 
- * @author https://www.mkyong.com/java/how-to-sort-a-map-in-java/
- */
-
 public class GeneralUtils
 {
+	/**
+	 * @author Mukul Bansal
+	 * 
+	 */
+	public static Long dateTimeConverter(String format, Long unixTime)
+	{
+		Date date = new Date(unixTime);
+		String str = new SimpleDateFormat(format).format(date);
+		return new Long(str);
+	}
+
+	/**
+	 * 
+	 * @author https://www.mkyong.com/java/how-to-sort-a-map-in-java/
+	 */
 	public static HashMap<String, Float> sortHashMap(HashMap<String, Float> originalHashMap)
 	{
 		// 1. Convert Map to List of Map

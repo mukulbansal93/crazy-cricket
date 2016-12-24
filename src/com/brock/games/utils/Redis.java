@@ -12,14 +12,15 @@ import com.brock.games.crazycricket.protobuf.CrazyCricketProtos.Game;
 @Component
 public class Redis
 {
-	
+	Long matchNumber=0L;
 	public synchronized void save(Game game)
 	{
 		try
 		{
+			matchNumber++;
 			new SaveByPlayer(game).save();
 			new SaveByCountry(game).save();
-			new SaveByMatch(game).save();
+			new SaveByMatch(matchNumber,game).save();
 		}
 		catch (Exception e)
 		{

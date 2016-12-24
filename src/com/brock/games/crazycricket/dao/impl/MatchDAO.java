@@ -21,9 +21,9 @@ public class MatchDAO implements IMatchDAO
 	private static String MATCH_KEY = "Match";
 
 	@Override
-	public void save(Match match)
+	public void save(Long key, Match match)
 	{
-		this.redisTemplate.opsForHash().put(MATCH_KEY, match.getMatchDate(), match);
+		this.redisTemplate.opsForHash().put(MATCH_KEY, key, match);
 	}
 
 	@Override

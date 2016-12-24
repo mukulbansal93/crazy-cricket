@@ -9,4 +9,5 @@ public class Constants
 {
 	public static final String KAFKA_TOPICS = "LIMITED_OVERS,TEST,TWENTY_TWENTY";
 	public static final String ZOOKEEPER_IP = "127.0.0.1:2181";
+	public static final String DATEFORMAT = "yyyyMMdd";
 }

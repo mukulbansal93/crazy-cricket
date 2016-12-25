@@ -22,6 +22,8 @@ APIs for Blackrock's crazy-cricket problem
   - Start the Redis Server on localhost.
   - Deploy the build war formed in target folder on Apache Tomcat.
   - Follow the steps at https://github.com/blackrock/crazy-cricket to push sample messages to Apache Kafka and test the APIs using browser(since all are GET requests) or use any REST client like [POSTMAN]
+  
+  
 
 `Note- `As of now shell script `run.sh` does not do anything. I am planning on writing it in the future. Once done, it will initialize all facets of the project but I think that there are just too many configurables like Zookeeper IP & port, Tomcat directory, Redis IP & port etc which might pose a problem.
 

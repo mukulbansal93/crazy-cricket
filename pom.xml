@@ -28,11 +28,18 @@
 
 	<properties>
 		<spring.version>4.2.2.RELEASE</spring.version>
-		<jdk.version>1.7</jdk.version>
 		<jackson.version>2.4.4</jackson.version>
 	</properties>
 
 	<dependencies>
+
+		<!-- SERVLET DEPENDENCY -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
 
 		<!-- SPRING DEPENDENCY -->
 		<dependency>
